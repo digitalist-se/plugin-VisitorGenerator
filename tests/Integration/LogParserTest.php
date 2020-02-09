@@ -13,14 +13,14 @@ use Piwik\Plugins\VisitorGenerator\LogParser;
  * @group VisitorGenerator
  * @group LogParserTest
  */
-class LogParserTest extends \PHPUnit_Framework_TestCase
+class LogParserTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var LogParser
      */
     private $logParser;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -49,7 +49,7 @@ class LogParserTest extends \PHPUnit_Framework_TestCase
 
         foreach ($lines as $line) {
             $this->assertEquals(array('ip', 'time', 'url', 'referrer', 'ua'), array_keys($line));
-            $this->assertContains('matomo.php', $line['url']);
+            self::assertStringContainsString('matomo.php', $line['url']);
         }
     }
 
